@@ -29,3 +29,35 @@ This repository was created to learn NestJS with MongoDB as database.
 To visualize the MongoDB database you can use any client, I used MongoDB Compass. Port to connect is 27017.
 `mongodb://localhost:27017/nest-pokemon`. Remember to create the database before connecting using docker-compose.
 
+## Setup for development
+
+1. Install dependencies
+
+```bash
+npm install
+```
+
+2. Run docker-compose to create the database
+
+```bash
+docker-compose up -d
+```
+
+Or you can use the command `npm run start:db` to run the docker-compose.
+
+3. Run the application in development mode
+
+```bash
+npm run start:dev
+```
+
+You can also use the command `npm run start:all` to run the application and create db.
+
+## Technologies used
+
+* TypeScript
+* NestJS
+* MongoDB
+* Mongoose
+* Docker
+* Docker-compose
