@@ -23,13 +23,7 @@ export class PokemonService {
       const pokemon = await this.pokemonModel.create(createPokemonDto);
       return pokemon;
     } catch (error) {
-      if (error.code === 11000)
-        throw new BadRequestException(
-          `Pokemon already exists: ${JSON.stringify(error.keyValue)}`,
-        );
-      throw new InternalServerErrorException(
-        'Check Server logs: Unable to create pokemon',
-      );
+      this.handleExceptions(error);
     }
   }
 
@@ -64,12 +58,25 @@ export class PokemonService {
       updatePokemonDto.name = updatePokemonDto.name.toLowerCase();
     }
 
-    await pokemon.updateOne(updatePokemonDto);
-
-    return { ...pokemon.toJSON(), ...updatePokemonDto };
+    try {
+      await pokemon.updateOne(updatePokemonDto);
+      return { ...pokemon.toJSON(), ...updatePokemonDto };
+    } catch (error) {
+      this.handleExceptions(error);
+    }
   }
 
   remove(id: number) {
     return `This action removes a #${id} pokemon`;
+  }
+
+  private handleExceptions(error: any) {
+    if (error.code === 11000)
+      throw new BadRequestException(
+        `Pokemon already exists: ${JSON.stringify(error.keyValue)}`,
+      );
+    throw new InternalServerErrorException(
+      'Check Server logs: Unable to create pokemon',
+    );
   }
 }
