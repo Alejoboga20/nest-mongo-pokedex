@@ -45,7 +45,16 @@ docker-compose up -d
 
 Or you can use the command `npm run start:db` to run the docker-compose.
 
-3. Run the application in development mode
+3. Fill `.env` file with your data. You can use ``.env.template`` file to create `.env` file.
+
+```
+PORT=
+MONGODB=
+DEFAULT_LIMIT=
+
+```
+
+4. Run the application in development mode
 
 ```bash
 npm run start:dev
