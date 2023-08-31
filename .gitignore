@@ -36,3 +36,6 @@ lerna-debug.log*
 
 # Database
 mongo
+
+# Environment
+.env
